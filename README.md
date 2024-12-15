@@ -24,13 +24,21 @@ Este projeto é uma **API RESTful** para uma plataforma de revenda de veículos 
 my_vehicle_api/
 ├── app/
 │   ├── main.py          # Ponto de entrada da aplicação
+
 │   ├── models.py        # Definições dos modelos de dados
+
 │   ├── database.py      # Configurações de conexão com o banco de dados
+
 │   ├── schemas.py       # Estruturas de dados (Pydantic)
+
 │   └── crud.py          # Funções de acesso ao banco de dados
+
 ├── deployment.yaml      # Configuração do deployment no Kubernetes
+
 ├── service.yaml         # Configuração do serviço no Kubernetes
+
 ├── Dockerfile            # Configuração para construção da imagem Docker
+
 └── README.md            # Documentação do projeto
 ```
 
