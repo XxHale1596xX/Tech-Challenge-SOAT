@@ -51,3 +51,8 @@ my_vehicle_api/
 1. **Criar um cluster Kind**:
    ```bash
    kind create cluster
+
+2. **Construir a imagem Docker**:
+Navegue até o diretório do projeto e construa sua imagem Docker:
+```bash
+docker build -t seu_usuario/seu_imagem:latest .
