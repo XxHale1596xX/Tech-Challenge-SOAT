@@ -68,6 +68,7 @@ kind load docker-image seu_usuario/seu_imagem:latest
 ```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
+```bash
 
 
 
