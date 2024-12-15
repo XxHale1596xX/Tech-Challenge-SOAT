@@ -2,56 +2,42 @@
 
 
 
-Descrição do Projeto
-O projeto é uma API RESTful para uma plataforma de revenda de veículos automotores. O objetivo principal é permitir que os usuários realizem operações relacionadas à compra e venda de veículos, incluindo cadastro de novos veículos, atualização de informações, registro de vendas, e listagens de veículos disponíveis e já vendidos.
+# Projeto API de Revenda de Veículos
 
-Funcionalidades da API
-Cadastrar um veículo: Permite que um usuário crie um registro de um veículo com detalhes como marca, modelo, ano, cor e preço.
-Editar dados do veículo: Permite que informações de um veículo cadastrado sejam atualizadas.
-Efetuar a venda de um veículo: Registra a venda de um veículo, armazenando o CPF do comprador e a data da venda.
-Listar veículos à venda: Oferece uma lista de veículos disponíveis para venda, ordenada pelo preço, do mais barato para o mais caro.
-Listar veículos vendidos: Permite visualizar os veículos que já foram vendidos, também ordenados por preço.
-Webhook para notificações de pagamento: Um endpoint que pode receber notificações de uma entidade de pagamento, informando se um pagamento foi efetuado ou cancelado.
-Implementação
-A API foi desenvolvida usando o framework FastAPI em Python, que oferece alta performance e é simples de usar para a construção de APIs. O código foi estruturado seguindo os princípios de Clean Architecture e orientado por SOLID, de forma a permitir a manutenibilidade e escalabilidade.
+Este projeto é uma **API RESTful** para uma plataforma de revenda de veículos automotores. Ele permite realizar operações relacionadas à compra e venda de veículos, incluindo cadastro, atualização, vendas e listagens.
 
-As interações com a base de dados são feitas usando SQLAlchemy, e a persistência de dados está configurada para uma base de dados SQLite (ideal para desenvolvimento e testes locais).
+## Funcionalidades
 
+- **Cadastrar um veículo**: Cria um registro de um veículo com detalhes como marca, modelo, ano, cor e preço.
+- **Editar dados do veículo**: Atualiza as informações de um veículo cadastrado.
+- **Efetuar a venda de um veículo**: Registra a venda de um veículo com CPF do comprador e data da venda.
+- **Listar veículos à venda**: Mostra veículos disponíveis, ordenados por preço.
+- **Listar veículos vendidos**: Exibe os veículos já vendidos, também ordenados por preço.
+- **Webhook de notificações de pagamento**: Endpoint para receber notificações de pagamento.
 
-Como Usar Localmente no Kubernetes com Kind
-Pré-requisitos:
+## Estrutura do Projeto
+my_vehicle_api/
+├── app/
+│   ├── main.py          # Ponto de entrada da aplicação
+│   ├── models.py        # Definições dos modelos de dados
+│   ├── database.py      # Configurações de conexão com o banco de dados
+│   ├── schemas.py       # Estruturas de dados (Pydantic)
+│   └── crud.py          # Funções de acesso ao banco de dados
+├── deployment.yaml      # Configuração do deployment no Kubernetes
+├── service.yaml         # Configuração do serviço no Kubernetes
+├── Dockerfile            # Configuração para construção da imagem Docker
+└── README.md            # Documentação do projeto
 
-Instale o Docker e o Kind (Kubernetes IN Docker) em sua máquina.
-Certifique-se de que tem o kubectl instalado.
+## Como Usar Localmente no Kubernetes com Kind
 
-Criar um cluster Kind:
+### Pré-requisitos
 
-Execute o seguinte comando para criar um novo cluster Kubernetes:
--- kind create cluster
+- **Docker**: Certifique-se de que o Docker está instalado.
+- **Kind**: Instale o Kind seguindo as instruções em [Kind Documentation](https://kind.sigs.k8s.io/docs/user/quick-start/).
+- **kubectl**: Instale o `kubectl` para se comunicar com o cluster Kubernetes.
 
-Construir a imagem Docker:
-Primeiro, crie uma imagem Docker da aplicação utilizando o Dockerfile. Execute:
--- docker build -t seu_usuario/seu_imagem:latest .
+### Passo a Passo
 
-Carregar a imagem no Kind:
-Se você estiver usando Kind, precisará carregar a imagem local no cluster. Use o seguinte comando:
--- kind load docker-image seu_usuario/seu_imagem:latest
-
-Aplicar as configurações do Kubernetes:
-Aplique as definições de deployment e service para sua aplicação:
--- kubectl apply -f deployment.yaml
--- kubectl apply -f service.yaml
-
-Verificar o status dos pods e serviços:
-Certifique-se de que os pods estão rodando:
--- kubectl get pods -A
-
-Acessando a Aplicação
-Descobrir o NodePort:
-Localize a porta que foi atribuída ao seu serviço (type: NodePort). Você pode ver isso na saída do comando kubectl get services.
-
-Acessar a API:
-Use o IP do cluster para acessar sua aplicação. Se você estiver rodando o Kind localmente, normalmente você pode acessar em http://127.0.0.1:<NodePort>.
-
-Como Testar
-Você pode testar a API utilizando o curl ou ferramentas como Postman. Segue alguns exemplos de
+1. **Criar um cluster Kind**:
+   ```bash
+   kind create cluster
