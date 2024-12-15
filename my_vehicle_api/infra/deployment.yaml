@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vehicle-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vehicle-api
+  template:
+    metadata:
+      labels:
+        app: vehicle-api
+    spec:
+      containers:
+      - name: vehicle-api
+        image: hale15/vehiclesv1:latest # Substitua pelo nome da sua imagem Docker
+        ports:
+        - containerPort: 80
