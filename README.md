@@ -56,16 +56,17 @@ my_vehicle_api/
    Navegue até o diretório do projeto e construa sua imagem Docker:
 ```bash
 docker build -t seu_usuario/seu_imagem:latest .
+´´´
 
 3. **Carregar a imagem no Kind**:
    Carregue a imagem Docker no cluster Kind:
 ```bash
 kind load docker-image seu_usuario/seu_imagem:latest
+´´´
 
 
 4. **Aplicar as configurações do Kubernetes**:
    Aplique os arquivos de configuração para o deployment e o serviço:
-```bash
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```bash
