@@ -97,17 +97,39 @@ Você pode testar a API utilizando comandos `curl` ou ferramentas como **Postman
 
 1. **Cadastrar um veículo**:
    ```bash
-   curl -X POST "http://127.0.0.1:<NodePort>/vehicles/" -H "Content-Type: application/json" -d '{"brand": "Toyota", "model": "Corolla", "year": 2020, "color": "Blue", "price": 30000}'
+   curl --location 'http://127.0.0.1:8000/vehicles/' \
+--header 'Content-Type: application/json' \
+--data '{"brand": "Toyota", "model": "Corolla", "year": 2020, "color": "Blue", "price": 30000}'
    ```
 
 2. **Editar um veículo**:
    ```bash
-   curl -X PUT "http://127.0.0.1:<NodePort>/vehicles/1" -H "Content-Type: application/json" -d '{"brand": "Honda", "model": "Civic", "year": 2022, "color": "Red", "price": 35000}'
+   curl --location --request PUT 'http://127.0.0.1:8000/vehicles/1' \
+--header 'Content-Type: application/json' \
+--data '{"brand": "Honda", "model": "Civic", "year": 2022, "color": "Red", "price": 35000}'
    ```
 
 3. **Efetuar a venda de um veículo**:
    ```bash
-   curl -X POST "http://127.0.0.1:<NodePort>/vehicles/1
+   curl --location 'http://127.0.0.1:8000/vehicles/7/sell' \
+--header 'Content-Type: application/json' \
+--data '{"customer_cpf": "12345678901", "sale_date": "2024-08-12"}'
+  ```
 
+4. **listar veiculos a venda**:
+   ```bash
+curl --location 'http://127.0.0.1:8000/vehicles/for-sale/''
+   ```
 
+5. **listar veiculos vendidos**:
+   ```bash
+curl --location 'http://127.0.0.1:8000/vehicles/sold/'
+   ```
+
+6. **Webhook**:
+   ```bash
+curl --location 'http://127.0.0.1:8000/payment-webhook/' \
+--header 'Content-Type: application/json' \
+--data '{"payment_code": "123456", "status": "completed"}'
+   ```
 
