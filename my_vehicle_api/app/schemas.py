@@ -37,3 +37,14 @@ class Sale(BaseModel):
 class PaymentNotification(BaseModel):
     payment_code: str
     status: str
+
+class SaleBase(BaseModel):
+    vehicle_id: int
+    customer_cpf: str
+    sale_date: date
+
+class Sale(SaleBase):
+    id: int
+
+    class Config:
+        orm_mode = True
